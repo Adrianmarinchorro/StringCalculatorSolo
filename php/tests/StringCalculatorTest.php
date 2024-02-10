@@ -80,10 +80,18 @@ class StringCalculatorTest extends TestCase
     }
 
     /** @test */
-    public function given_1_2_3_string_with_personalized_separator_return_3_int(): void
+    public function given_1_2_3_string_with_personalized_separator_return_6_int(): void
     {
         $result = StringCalculator::Add('//;_\n1;2_3');
 
         self::assertEquals(6, $result);
+    }
+
+    /** @test */
+    public function given_1_2_3_4_string_with_personalized_separator_return_10_int(): void
+    {
+        $result = StringCalculator::Add('//;_t\n1;2_3t4');
+
+        self::assertEquals(10, $result);
     }
 }
