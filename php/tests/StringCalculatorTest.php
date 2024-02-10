@@ -14,4 +14,12 @@ class StringCalculatorTest extends TestCase
 
         self::assertEquals(0, $result);
     }
+
+    /** @test */
+    public function given_a_4_string_return_4_int(): void
+    {
+        $result = StringCalculator::Add("4");
+
+        self::assertEquals(4, $result);
+    }
 }
