@@ -30,4 +30,12 @@ class StringCalculatorTest extends TestCase
 
         self::assertEquals(3, $result);
     }
+
+    /** @test */
+    public function given_a_1_2_3_string_return_6_int(): void
+    {
+        $result = StringCalculator::Add("1,2,3");
+
+        self::assertEquals(6, $result);
+    }
 }
