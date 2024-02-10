@@ -6,18 +6,13 @@ class StringCalculator
 {
     public static function Add(string $numbers): int
     {
-        if ($numbers === "1,2,3") {
-            return 6;
+        $numbersArray = explode(',', $numbers);
+        $result = 0;
+
+        foreach ($numbersArray as $number) {
+            $result += (int) $number;
         }
 
-        if ($numbers === "1,2") {
-            return 3;
-        }
-
-        if ($numbers === "4") {
-            return 4;
-        }
-
-        return 0;
+        return $result;
     }
 }
