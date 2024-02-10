@@ -46,4 +46,12 @@ class StringCalculatorTest extends TestCase
 
         self::assertEquals(45, $result);
     }
+
+    /** @test */
+    public function given_1_2_3_string_with_another_separator_return_6_int(): void
+    {
+        $result = StringCalculator::Add('1\n2,3');
+
+        self::assertEquals(6, $result);
+    }
 }
