@@ -28,6 +28,6 @@ class StringCalculatorTest extends TestCase
     {
         $result = StringCalculator::Add("1,2");
 
-        self::assertEquals(4, $result);
+        self::assertEquals(3, $result);
     }
 }
