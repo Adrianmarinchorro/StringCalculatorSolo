@@ -22,4 +22,12 @@ class StringCalculatorTest extends TestCase
 
         self::assertEquals(4, $result);
     }
+
+    /** @test */
+    public function given_a_1_2_string_return_3_int(): void
+    {
+        $result = StringCalculator::Add("1,2");
+
+        self::assertEquals(4, $result);
+    }
 }
