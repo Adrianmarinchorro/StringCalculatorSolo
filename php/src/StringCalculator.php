@@ -9,18 +9,6 @@ class StringCalculator
      */
     public static function Add(string $numbers): int
     {
-        if ($numbers === '1,-2,-3') {
-            throw new \Exception('error: negatives not allowed: -2 -3');
-        }
-
-        if ($numbers === '1,-2') {
-            throw new \Exception('error: negatives not allowed: -2');
-        }
-
-        if ($numbers === '1,-2,-5') {
-            throw new \Exception('error: negatives not allowed: -2 -5');
-        }
-
         $numbers = self::parseStringIfHavePersonalizedSeparator($numbers);
 
         $numbersArray = self::sanitizeString($numbers);
@@ -32,9 +20,11 @@ class StringCalculator
      * @param array $numbersArray
      * @return int
      */
-    public static function sumNumbers(array $numbersArray): int
+    private static function sumNumbers(array $numbersArray): int
     {
         $result = 0;
+
+        self::haveValidNumbers($numbersArray);
 
         foreach ($numbersArray as $number) {
             $result += (int)$number;
@@ -44,10 +34,28 @@ class StringCalculator
     }
 
     /**
+     * @throws \Exception
+     */
+    private static function haveValidNumbers(array $numbersArray): void
+    {
+        $invalidNumbers = '';
+
+        foreach ($numbersArray as $numbers) {
+            if ((int) $numbers < 0) {
+                $invalidNumbers .= ' ' . $numbers;
+            }
+        }
+
+        if (!empty($invalidNumbers)) {
+            throw new \Exception('error: negatives not allowed:' . $invalidNumbers);
+        }
+    }
+
+    /**
      * @param string $numbers
      * @return string[]
      */
-    public static function sanitizeString(string $numbers): array
+    private static function sanitizeString(string $numbers): array
     {
         $formattedNumbers = str_replace('\n', ',', $numbers);
         return explode(',', $formattedNumbers);
@@ -57,7 +65,7 @@ class StringCalculator
      * @param string $numbers
      * @return array|string|string[]
      */
-    public static function parseStringIfHavePersonalizedSeparator(string $numbers): string|array
+    private static function parseStringIfHavePersonalizedSeparator(string $numbers): string|array
     {
         $startPosition = strpos($numbers, '//');
         $endPosition = strpos($numbers, '\n');
@@ -79,7 +87,7 @@ class StringCalculator
      * @param bool|int $endPosition
      * @return bool
      */
-    public static function havePersonalizedSeparator(bool|int $startPosition, bool|int $endPosition): bool
+    private static function havePersonalizedSeparator(bool|int $startPosition, bool|int $endPosition): bool
     {
         return $startPosition !== false && $endPosition !== false;
     }
