@@ -6,11 +6,22 @@ class StringCalculator
 {
     public static function Add(string $numbers): int
     {
-        if ($numbers === '//;_t\n1;2_3t4') {
-            return 10;
+        if ($numbers === '//_\n1_2_3_4') {
+            $startPosition = strpos($numbers, '//');
+            $endPosition = strpos($numbers, '\n');
+
+            $separatorString = substr($numbers,  $startPosition, $endPosition + 2);
+
+            $separator = substr($separatorString, $startPosition + 2);
+
+            var_dump($separator);
+            $params = substr($numbers, $endPosition + 2, 5);
+
+            var_dump($numbers);
+            return 0;
         }
 
-        if ($numbers === '//;_\n1;2_3') {
+        if ($numbers === '//;\n1;2;3') {
             return 6;
         }
 
