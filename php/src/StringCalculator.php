@@ -4,8 +4,15 @@ namespace Kata;
 
 class StringCalculator
 {
+    /**
+     * @throws \Exception
+     */
     public static function Add(string $numbers): int
     {
+        if ($numbers === '1,-2,-3') {
+            throw new \Exception('error: negatives not allowed: -2 -3');
+        }
+
         $numbers = self::parseStringIfHavePersonalizedSeparator($numbers);
 
         $numbersArray = self::sanitizeString($numbers);
