@@ -57,4 +57,15 @@ class StringCalculatorTest extends TestCase
         StringCalculator::Add('1,-2,-3');
 
     }
+
+    /**
+     * @test
+     */
+    public function given_1_2_with_negatives_values_return_exception(): void
+    {
+        $this->expectExceptionMessage('error: negatives not allowed: -2');
+
+        StringCalculator::Add('1,-2');
+
+    }
 }
