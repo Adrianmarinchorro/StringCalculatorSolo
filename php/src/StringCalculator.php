@@ -19,6 +19,7 @@ class StringCalculator
     /**
      * @param array $numbersArray
      * @return int
+     * @throws \Exception
      */
     private static function sumNumbers(array $numbersArray): int
     {
