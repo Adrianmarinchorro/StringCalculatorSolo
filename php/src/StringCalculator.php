@@ -9,18 +9,6 @@ class StringCalculator
      */
     public static function Add(string $numbers): int
     {
-        if ($numbers === '1001,2') {
-            return 2;
-        }
-
-        if ($numbers === '//;\n2001;2;3') {
-            return 5;
-        }
-
-        if ($numbers === '//;\n8000;1;0') {
-            return 1;
-        }
-
         $numbers = self::parseStringIfHavePersonalizedSeparator($numbers);
 
         $numbersArray = self::sanitizeString($numbers);
@@ -40,7 +28,11 @@ class StringCalculator
         self::haveValidNumbers($numbersArray);
 
         foreach ($numbersArray as $number) {
-            $result += (int)$number;
+            if (self::isBiggerThan1000($number)) {
+                continue;
+            }
+
+            $result += (int) $number;
         }
 
         return $result;
@@ -103,5 +95,14 @@ class StringCalculator
     private static function havePersonalizedSeparator(bool|int $startPosition, bool|int $endPosition): bool
     {
         return $startPosition !== false && $endPosition !== false;
+    }
+
+    /**
+     * @param mixed $number
+     * @return bool
+     */
+    public static function isBiggerThan1000(mixed $number): bool
+    {
+        return (int) $number > 1000;
     }
 }
