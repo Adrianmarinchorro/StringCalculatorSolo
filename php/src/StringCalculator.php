@@ -12,13 +12,11 @@ class StringCalculator
 
             $separatorString = substr($numbers,  $startPosition, $endPosition + 2);
 
-            $separator = substr($separatorString, $startPosition + 2);
+            $separator = substr($separatorString, $startPosition + 2, 1);
 
-            var_dump($separator);
-            $params = substr($numbers, $endPosition + 2, 5);
+            $params = substr($numbers, $endPosition + 2, strlen($numbers) - strlen($separatorString));
 
-            var_dump($numbers);
-            return 0;
+            $numbers = str_replace($separator, ',', $params);
         }
 
         if ($numbers === '//;\n1;2;3') {
