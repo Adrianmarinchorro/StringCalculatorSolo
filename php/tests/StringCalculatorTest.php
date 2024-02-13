@@ -36,6 +36,15 @@ class StringCalculatorTest extends TestCase
         ];
     }
 
+    public static function simpleCalculatorNotAllowNegativesValues(): array
+    {
+        return [
+            'given_1_2_3_with_negatives_values_return_exception' => ["numbers" => '1,-2,-3', "exceptionMessage" => 'error: negatives not allowed: -2 -3'],
+            'given_1_2_with_negatives_values_return_exception' => ["numbers" => '1,-2', "exceptionMessage" => 'error: negatives not allowed: -2'],
+            'given_1_2_5_with_negatives_values_return_exception' => ["numbers" => '1,-2,-5', "exceptionMessage" => 'error: negatives not allowed: -2 -5'],
+        ];
+    }
+
     /**
      * @dataProvider simpleCalculator
      * @dataProvider simpleCalculatorWithNewLines
@@ -48,34 +57,13 @@ class StringCalculatorTest extends TestCase
     }
 
     /**
+     * @dataProvider simpleCalculatorNotAllowNegativesValues
      * @test
      */
-    public function given_1_2_3_with_negatives_values_return_exception(): void
+    public function given_a_negative_value_throw_exception(string $numbers, string $exceptionMessage): void
     {
-        $this->expectExceptionMessage('error: negatives not allowed: -2 -3');
+        $this->expectExceptionMessage($exceptionMessage);
 
-        StringCalculator::Add('1,-2,-3');
-
-    }
-
-    /**
-     * @test
-     */
-    public function given_1_2_with_negatives_values_return_exception(): void
-    {
-        $this->expectExceptionMessage('error: negatives not allowed: -2');
-
-        StringCalculator::Add('1,-2');
-
-    }
-
-    /**
-     * @test
-     */
-    public function given_1_2_5_with_negatives_values_return_exception(): void
-    {
-        $this->expectExceptionMessage('error: negatives not allowed: -2 -5');
-
-        StringCalculator::Add('1,-2,-5');
+        StringCalculator::Add($numbers);
     }
 }
