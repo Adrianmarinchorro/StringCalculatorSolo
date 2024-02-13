@@ -45,10 +45,18 @@ class StringCalculatorTest extends TestCase
         ];
     }
 
+    public static function simpleCalculatorIgnoreNumbersBiggerThan1000(): array
+    {
+        return [
+            'given_1001_2_string_with_personalized_separator_return_2_int' => ["numbers" => '1001,2', "result" => 2],
+        ];
+    }
+
     /**
      * @dataProvider simpleCalculator
      * @dataProvider simpleCalculatorWithNewLines
      * @dataProvider simpleCalculatorWithPersonalizedSeparators
+     * @dataProvider simpleCalculatorIgnoreNumbersBiggerThan1000
      * @test
      */
     public function given_a_string_then_return_the_sum(string $numbers, int $result): void
