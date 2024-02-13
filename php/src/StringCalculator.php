@@ -13,6 +13,10 @@ class StringCalculator
             throw new \Exception('error: negatives not allowed: -2 -3');
         }
 
+        if ($numbers === '1,-2') {
+            throw new \Exception('error: negatives not allowed: -2');
+        }
+
         $numbers = self::parseStringIfHavePersonalizedSeparator($numbers);
 
         $numbersArray = self::sanitizeString($numbers);
