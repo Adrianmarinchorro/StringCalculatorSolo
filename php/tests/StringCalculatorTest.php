@@ -49,6 +49,7 @@ class StringCalculatorTest extends TestCase
     {
         return [
             'given_1001_2_string_with_personalized_separator_return_2_int' => ["numbers" => '1001,2', "result" => 2],
+            'given_2001_2_3_string_with_personalized_separator_return_2_int' => ["numbers" => '//;\n2001;2;3', "result" => 5],
         ];
     }
 
