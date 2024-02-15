@@ -54,11 +54,21 @@ class StringCalculatorTest extends TestCase
         ];
     }
 
+    public static function simpleCalculatorWithAnyLengthSeparator(): array
+    {
+        return [
+            'given_1_2_3_then_return_6' => ["numbers" => '//[***]\n1***2***3', "result" => 6],
+            'given_2_3_then_return_5' => ["numbers" => '//[--]\n2--3', "result" => 5],
+            'given_1_1_1_then_return_3' => ["numbers" => '//[tttt]\n1tttt1tttt1', "result" => 3],
+        ];
+    }
+
     /**
      * @dataProvider simpleCalculator
      * @dataProvider simpleCalculatorWithNewLines
      * @dataProvider simpleCalculatorWithPersonalizedSeparators
      * @dataProvider simpleCalculatorIgnoreNumbersBiggerThan1000
+     * @dataProvider simpleCalculatorWithAnyLengthSeparator
      * @test
      */
     public function given_a_string_then_return_the_sum(string $numbers, int $result): void
@@ -75,29 +85,5 @@ class StringCalculatorTest extends TestCase
         $this->expectExceptionMessage($exceptionMessage);
 
         StringCalculator::Add($numbers);
-    }
-
-    /**
-     * @test
-     */
-    public function given_1_2_3_then_return_6(): void
-    {
-        $this->assertEquals(6, StringCalculator::Add('//[***]\n1***2***3'));
-    }
-
-    /**
-     * @test
-     */
-    public function given_2_3_then_return_5(): void
-    {
-        $this->assertEquals(5, StringCalculator::Add('//[--]\n2--3'));
-    }
-
-    /**
-     * @test
-     */
-    public function given_1_1_1_then_return_3(): void
-    {
-        $this->assertEquals(3, StringCalculator::Add('//[tttt]\n1tttt1tttt1'));
     }
 }
