@@ -92,4 +92,12 @@ class StringCalculatorTest extends TestCase
     {
         $this->assertEquals(5, StringCalculator::Add('//[--]\n2--3'));
     }
+
+    /**
+     * @test
+     */
+    public function given_1_1_1_then_return_3(): void
+    {
+        $this->assertEquals(3, StringCalculator::Add('//[tttt]\n1tttt1tttt1'));
+    }
 }
