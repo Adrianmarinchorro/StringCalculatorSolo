@@ -82,7 +82,7 @@ class StringCalculator
 
             $separator = substr($separatorString, $startPosition + self::SEPARATOR_LENGTH, strlen($separatorString) - (self::SEPARATOR_LENGTH * 2));
 
-            if (strlen($separator) > 1) {
+            if (self::isLongerThanOne($separator)) {
                 $separator = substr($separator, 1, -1);
             }
 
@@ -90,6 +90,7 @@ class StringCalculator
 
             $numbers = str_replace($separator, ',', $params);
         }
+
         return $numbers;
     }
 
@@ -110,5 +111,14 @@ class StringCalculator
     public static function isBiggerThan1000(mixed $number): bool
     {
         return (int) $number > 1000;
+    }
+
+    /**
+     * @param string $separator
+     * @return bool
+     */
+    public static function isLongerThanOne(string $separator): bool
+    {
+        return strlen($separator) > 1;
     }
 }
