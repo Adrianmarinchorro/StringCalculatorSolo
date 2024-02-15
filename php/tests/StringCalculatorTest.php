@@ -80,7 +80,7 @@ class StringCalculatorTest extends TestCase
     /**
      * @test
      */
-    public function given_1_2_3_then_return_6(string $numbers): void
+    public function given_1_2_3_then_return_6(): void
     {
         $this->assertEquals(6, StringCalculator::Add('//[***]\n1***2***3'));
     }
