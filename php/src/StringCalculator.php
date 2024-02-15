@@ -4,6 +4,8 @@ namespace Kata;
 
 class StringCalculator
 {
+    const SEPARATOR_LENGTH = 2;
+
     /**
      * @throws \Exception
      */
@@ -84,11 +86,11 @@ class StringCalculator
         $endPosition = strpos($numbers, '\n');
 
         if (self::havePersonalizedSeparator($startPosition, $endPosition)) {
-            $separatorString = substr($numbers, $startPosition, $endPosition + 2);
+            $separatorString = substr($numbers, $startPosition, $endPosition + self::SEPARATOR_LENGTH);
 
-            $separator = substr($separatorString, $startPosition + 2, 1);
+            $separator = substr($separatorString, $startPosition + self::SEPARATOR_LENGTH, strlen($separatorString) - (self::SEPARATOR_LENGTH * 2));
 
-            $params = substr($numbers, $endPosition + 2, strlen($numbers) - strlen($separatorString));
+            $params = substr($numbers, $endPosition + self::SEPARATOR_LENGTH, strlen($numbers) - strlen($separatorString));
 
             $numbers = str_replace($separator, ',', $params);
         }
