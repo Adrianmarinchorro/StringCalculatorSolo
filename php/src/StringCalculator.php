@@ -11,14 +11,6 @@ class StringCalculator
      */
     public static function Add(string $numbers): int
     {
-        if ($numbers === '//[***]\n1***2***3') {
-            return 6;
-        }
-
-        if ($numbers === '//[--]\n2--3') {
-            return 5;
-        }
-
         $numbers = self::parseStringIfHavePersonalizedSeparator($numbers);
 
         $numbersArray = self::sanitizeString($numbers);
@@ -89,6 +81,10 @@ class StringCalculator
             $separatorString = substr($numbers, $startPosition, $endPosition + self::SEPARATOR_LENGTH);
 
             $separator = substr($separatorString, $startPosition + self::SEPARATOR_LENGTH, strlen($separatorString) - (self::SEPARATOR_LENGTH * 2));
+
+            if (strlen($separator) > 1) {
+                $separator = substr($separator, 1, -1);
+            }
 
             $params = substr($numbers, $endPosition + self::SEPARATOR_LENGTH, strlen($numbers) - strlen($separatorString));
 
