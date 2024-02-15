@@ -94,4 +94,12 @@ class StringCalculatorTest extends TestCase
     {
         $this->assertEquals(6, StringCalculator::Add('//[*][%]\n1*2%3'));
     }
+
+    /**
+     * @test
+     */
+    public function given_4_2_4_then_return_10(): void
+    {
+        $this->assertEquals(10, StringCalculator::Add('//[_][/]\n4_2/4'));
+    }
 }
