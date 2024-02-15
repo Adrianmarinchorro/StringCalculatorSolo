@@ -76,4 +76,12 @@ class StringCalculatorTest extends TestCase
 
         StringCalculator::Add($numbers);
     }
+
+    /**
+     * @test
+     */
+    public function given_1_2_3_then_return_6(string $numbers): void
+    {
+        $this->assertEquals(6, StringCalculator::Add('//[***]\n1***2***3'));
+    }
 }
