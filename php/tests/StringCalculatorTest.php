@@ -72,6 +72,13 @@ class StringCalculatorTest extends TestCase
         ];
     }
 
+    public static function simpleCalculatorWithMoreThanOneSeparatorAndAnyLength(): array
+    {
+        return [
+            'given_1_foo_2_bar_3_then_return_6' => ["numbers" => '//[foo][bar]\n1foo2bar3', "result" => 6]
+        ];
+    }
+
     /**
      * @dataProvider simpleCalculator
      * @dataProvider simpleCalculatorWithNewLines
@@ -79,6 +86,7 @@ class StringCalculatorTest extends TestCase
      * @dataProvider simpleCalculatorIgnoreNumbersBiggerThan1000
      * @dataProvider simpleCalculatorWithAnyLengthSeparator
      * @dataProvider simpleCalculatorWithMoreThanOneSeparator
+     * @dataProvider simpleCalculatorWithMoreThanOneSeparatorAndAnyLength
      * @test
      */
     public function given_a_string_then_return_the_sum(string $numbers, int $result): void
