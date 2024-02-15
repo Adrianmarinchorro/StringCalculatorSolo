@@ -63,12 +63,22 @@ class StringCalculatorTest extends TestCase
         ];
     }
 
+    public static function simpleCalculatorWithMoreThanOneSeparator(): array
+    {
+        return [
+            'given_2_2_3_then_return_7' => ["numbers" => '//[*][%]\n2*2%3', "result" => 7],
+            'given_4_2_4_then_return_10' => ["numbers" => '//[_][/]\n4_2/4', "result" => 10],
+            'given_3_3_3_1_then_return_10' => ["numbers" => '//[¬][~][#]\n1¬3~3#3', "result" => 10],
+        ];
+    }
+
     /**
      * @dataProvider simpleCalculator
      * @dataProvider simpleCalculatorWithNewLines
      * @dataProvider simpleCalculatorWithPersonalizedSeparators
      * @dataProvider simpleCalculatorIgnoreNumbersBiggerThan1000
      * @dataProvider simpleCalculatorWithAnyLengthSeparator
+     * @dataProvider simpleCalculatorWithMoreThanOneSeparator
      * @test
      */
     public function given_a_string_then_return_the_sum(string $numbers, int $result): void
@@ -85,29 +95,5 @@ class StringCalculatorTest extends TestCase
         $this->expectExceptionMessage($exceptionMessage);
 
         StringCalculator::Add($numbers);
-    }
-
-    /**
-     * @test
-     */
-    public function given_1_2_3_then_return_6(): void
-    {
-        $this->assertEquals(6, StringCalculator::Add('//[*][%]\n1*2%3'));
-    }
-
-    /**
-     * @test
-     */
-    public function given_4_2_4_then_return_10(): void
-    {
-        $this->assertEquals(10, StringCalculator::Add('//[_][/]\n4_2/4'));
-    }
-
-    /**
-     * @test
-     */
-    public function given_3_3_3_1_then_return_10(): void
-    {
-        $this->assertEquals(10, StringCalculator::Add('//[¬][~][#]\n1¬3~3#3'));
     }
 }
